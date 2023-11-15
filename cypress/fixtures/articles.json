@@ -1,0 +1,39 @@
+{
+  "articles": [
+    {
+      "slug": "Title-for-a-test-252584",
+      "title": "Title1",
+      "description": "Nothing to do",
+      "body": "There is no evidence",
+      "tagList": [],
+      "createdAt": "2023-11-09T19:00:29.561Z",
+      "updatedAt": "2023-11-09T19:00:29.561Z",
+      "favorited": false,
+      "favoritesCount": 10,
+      "author": {
+        "username": "Mary28",
+        "bio": null,
+        "image": "https://api.realworld.io/images/smiley-cyrus.jpeg",
+        "following": false
+      }
+    },
+    {
+      "slug": "Title-for-test-cl-252584",
+      "title": "Title2",
+      "description": "Nothing to do",
+      "body": "There is no evidence",
+      "tagList": [],
+      "createdAt": "2023-11-09T18:57:52.044Z",
+      "updatedAt": "2023-11-09T18:57:52.044Z",
+      "favorited": false,
+      "favoritesCount": 5,
+      "author": {
+        "username": "Mary28",
+        "bio": null,
+        "image": "https://api.realworld.io/images/smiley-cyrus.jpeg",
+        "following": false
+      }
+    }
+  ],
+  "articlesCount": 2
+}
