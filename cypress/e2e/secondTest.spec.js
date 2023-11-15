@@ -13,8 +13,8 @@ describe('from 41 lesson Tests with backend', () => {
     it('41 lesson delete a new atricle in a global feed', () => {
             const userCredentials = {//to log in
                 "user": {
-                "email": "test28@gmail.com",
-                "password": "CypressTest28"
+                "email": Cypress.env('userEmail'),
+                "password": Cypress.env('password')
             }
         }
 
@@ -38,7 +38,7 @@ describe('from 41 lesson Tests with backend', () => {
 
                            //API actions:
             cy.request({//provide all nessesary param of the request
-                url:'https://api.realworld.io/api/articles/',
+                url:Cypress.env('apiUrl')+'/api/articles/',
                 headers: {'Authorization': 'Token '+token},//token we got above
                 method: 'POST',
                 body: bodyRequest//const with parameters of request above
@@ -55,7 +55,7 @@ describe('from 41 lesson Tests with backend', () => {
 
             //проверим by API method что этого article больше нет на странице click on Global feed
             cy.request({
-                url: 'https://api.realworld.io/api/articles?limit=10&offset=0',
+                url: Cypress.env('apiUrl')+'/api/articles?limit=10&offset=0',
                 headers: {'Authorization': 'Token '+token},//token we got above
                 method: 'GET'
             }).its('body').then (body => {//pull out the body of response

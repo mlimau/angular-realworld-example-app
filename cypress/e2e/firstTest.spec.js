@@ -1,5 +1,4 @@
 
-
 describe('Tests with backend', () => {
     
     beforeEach('login to the app', ()=>{
@@ -9,7 +8,7 @@ describe('Tests with backend', () => {
         //               {fixture: 'tags.json'})
 
         cy.intercept({method: 'get', path: 'tags'}, {fixture: 'tags.json'})//II intercept method
-        cy.loginToApplication(2000,2200)
+        cy.loginToApplication(2000,2200)//command.gs loginToApplication set up
         
     })
     
@@ -21,7 +20,7 @@ it('Verify correct request and response (intercept) Lesson 39', () => {
         //этот метод всегда вставляется перед тестом (perfoming actions) to get info from NETWORK devtools //METHOD and URL:
         
         ////interception configured:
-        cy.intercept('POST', 'https://api.realworld.io/api/articles/').as('postArticle')
+        cy.intercept('POST', Cypress.env('apiUrl')+'/api/articles/').as('postArticle')//apiUrl set up in cypress.config.js as var
         //in order to get request body and responce to check them 
 
         //making a call"
@@ -114,3 +113,4 @@ it.only('Intercepting and modifying the request and response Lesson 40 (second p
      })   
 })
 })
+

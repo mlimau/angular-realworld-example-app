@@ -43,14 +43,22 @@ Cypress.Commands.add('loginToApplication', () => {
 
 //})
     //API method 41 Lesson:
+    // const userCredentials = {//to log in
+    //     "user": {
+    //     "email": "test28@gmail.com",
+    //     "password": "CypressTest28"
+        
+    // }
+    //with var (cypress.config.js set up)
     const userCredentials = {//to log in
         "user": {
-        "email": "test28@gmail.com",
-        "password": "CypressTest28"
-    }
+        "email": Cypress.env('userEmail'),
+        "password": Cypress.env('password')
+        }
+    
 }
 
-    cy.request('POST', 'https://api.realworld.io/api/users/login', userCredentials)//method, url, body included
+    cy.request('POST', Cypress.env('apiUrl')+'/api/users/login', userCredentials)//method with var (set up in cypress.config.js)
             .its('body').then(body => {//by its - we get property Body, and by then grab the value of the token (path)
                 const token = body.user.token
              //wrap our token into alias in order to use it:
