@@ -15,10 +15,7 @@ describe('Tests with backend', () => {
   
 it('Verify correct request and response (intercept) Lesson 39', () => {
 
-    //попробуем определить как работает кнопка Submit внутри
-    // Какие она отправляет requests при нажатии пeрeхватывая эти запросы методом INTERCEPT
-        //этот метод всегда вставляется перед тестом (perfoming actions) to get info from NETWORK devtools //METHOD and URL:
-        
+          
         ////interception configured:
         cy.intercept('POST', Cypress.env('apiUrl')+'/api/articles/').as('postArticle')//apiUrl set up in cypress.config.js as var
         //in order to get request body and responce to check them 
@@ -32,8 +29,7 @@ it('Verify correct request and response (intercept) Lesson 39', () => {
 
         cy.wait('@postArticle').then( xhr => {
             console.log(xhr)        //checking recponse on our calls and interceptions:
-        //Посмотрим В респонсе какие assertions можем делать
-        
+               
         expect(xhr.response.statusCode).to.equal(201)
         expect(xhr.request.body.article.title).to.equal('Title1 intercept')
         expect(xhr.request.method).to.equal('POST')
@@ -45,7 +41,7 @@ it('Verify correct request and response (intercept) Lesson 39', () => {
     
     
 it('Verify tags and display', () => {
-      cy.get('.tag-list').should('contain', 'cypress')//создан tags by intercept (above) существуют мы проверили
+      cy.get('.tag-list').should('contain', 'cypress')/
                             .and('contain', 'welcome')
                             .and('contain', 'testing')
                             console.log('.tag-list')
@@ -60,11 +56,11 @@ it('Verify Global Feed likes count 39', () => {
    
     cy.get('app-article-list button').then(likeCounter => {
         console.log(likeCounter)
-        expect(likeCounter[0]).to.contain('10')//значение установили before test в fuxtures articles.json (favoritesCount": 10)
+        expect(likeCounter[0]).to.contain('10')
         expect(likeCounter[1]).to.contain('5')
         
     })
-    cy.fixture('articles').then(file => {//берём наш файл articles.json и его параметры далее
+    cy.fixture('articles').then(file => {
         const articlesLink = file.articles[1].slug//path to slug (second element)
         file.articles[1].favoritesCount = 6//path to counter, assigned it 51(previous value + 1 loke, so our click)
         console.log(file)
@@ -88,21 +84,18 @@ it.only('Intercepting and modifying the request and response Lesson 40 (second p
             res.body.article.description = 'Nothing to do 2'//what we want in response
         
     }).as('postArticle') 
-
-        
+       
 
         //making a call"
         cy.contains('New Article').click()
         cy.get('[formcontrolname="title"]').type('Title 1 intercept')
-        cy.get('[formcontrolname="description"]').type('Nothing to do')//зависимо от type here проверка сделается по intercept req
-        // А реально будет введено 'Nothing to do' on Cypress
+        cy.get('[formcontrolname="description"]').type('Nothing to do')
         cy.get('[formcontrolname="body"]').type('There is no evidence')
         cy.contains('Publish Article').click()
 
         cy.wait('@postArticle').then( xhr => {
             console.log(xhr)        //checking recponse on our calls and interceptions:
-        //Посмотрим В респонсе какие assertions можем делать
-        
+                
         expect(xhr.response.statusCode).to.equal(201)
         expect(xhr.request.body.article.title).to.equal('Title 1 intercept')
         expect(xhr.request.method).to.equal('POST')
